@@ -51,7 +51,7 @@ public class HelloClient {
     }
 
     public static void main(String[] args) throws Exception {
-        HelloClient client = new HelloClient("localhost", 8888);
+        HelloClient client = new HelloClient("localhost", 49176);
         try {
             /* Access a service running on the local machine on port 50051 */
             String user = "world";
