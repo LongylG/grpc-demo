@@ -51,12 +51,11 @@ public class HelloClient {
     }
 
     public static void main(String[] args) throws Exception {
-        HelloClient client = new HelloClient("localhost", 49176);
+        HelloClient client = new HelloClient("localhost", 44533);
         try {
-            /* Access a service running on the local machine on port 50051 */
             String user = "world";
             if (args.length > 0) {
-                user = args[0]; /* Use the arg as the name to greet if provided */
+                user = args[0];
             }
             client.greet(user);
 
