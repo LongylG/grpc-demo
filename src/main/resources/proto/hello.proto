@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+
+
+option java_package = "com.github.longylg.grpc";
+option java_outer_classname = "HelloWorldProto";
+//option java_generic_services = true;
+option java_multiple_files = true;
+
+package helloWorld;
+
+service Greeter {
+   rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloReply {
+    string message = 1;
+}

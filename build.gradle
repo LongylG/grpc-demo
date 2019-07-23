@@ -1,0 +1,84 @@
+buildscript {
+	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/"
+			mavenCentral()
+		}
+	}
+	dependencies {
+		classpath "gradle.plugin.com.google.protobuf:protobuf-gradle-plugin:0.8.10"
+	}
+}
+
+plugins {
+	id 'application'
+	id 'org.springframework.boot' version '2.1.6.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "com.google.protobuf"
+group = 'com.githug.longylg'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+//	url "https://maven-central.storage-download.googleapis.com/repos/central/data/"
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	//with non-Android
+	implementation 'io.grpc:grpc-netty:1.22.1'
+	implementation "com.google.protobuf:protobuf-java-util:3.7.1"
+	implementation 'com.google.protobuf:protobuf-java:3.7.1'
+	implementation 'io.grpc:grpc-protobuf:1.22.1'
+	implementation 'io.grpc:grpc-stub:1.22.1'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+protobuf {
+	protoc {
+		artifact = "com.google.protobuf:protoc:3.7.1"
+	}
+	plugins {
+		grpc {
+			artifact = 'io.grpc:protoc-gen-grpc-java:1.22.1'
+		}
+	}
+	generateProtoTasks {
+		all()*.plugins {
+			grpc {
+				//指定*Grpc文件父目录
+				outputSubDir = "java"
+			}
+		}
+
+	}
+	//指定生成文件的根目录
+	generatedFilesBaseDir = "src"
+}
+
+
+sourceSets {
+	main {
+		proto {
+			// 除了默认的'src/main/proto'目录新增proto文件的方法
+			srcDir 'src/main/resources/proto'
+			include '**/*.proto'
+		}
+		java{
+		}
+	}
+}
