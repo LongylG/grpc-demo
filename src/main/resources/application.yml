@@ -1,4 +1,4 @@
 grpc:
   enable-reflection: true
-  port: 0 #default 6565,a random port will be set if 0
   in-process-server-name: grpc-applicaiton
+

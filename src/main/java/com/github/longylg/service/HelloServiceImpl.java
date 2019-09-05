@@ -7,6 +7,7 @@ import com.github.longylg.grpc.HelloRequest;
 
 import io.grpc.stub.StreamObserver;
 
+//simple server implement
 public class HelloServiceImpl extends GreeterGrpc.GreeterImplBase {
 
     @Override
@@ -15,4 +16,6 @@ public class HelloServiceImpl extends GreeterGrpc.GreeterImplBase {
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
     }
+
+
 }

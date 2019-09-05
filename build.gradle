@@ -10,6 +10,8 @@ buildscript {
 	}
 }
 
+
+
 plugins {
 	id 'application'
 	id 'org.springframework.boot' version '2.1.6.RELEASE'
@@ -21,6 +23,7 @@ apply plugin: "com.google.protobuf"
 group = 'com.githug.longylg'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+mainClassName = "com.github.longylg.GrpcDemoApplication"
 
 configurations {
 	compileOnly {
@@ -29,16 +32,16 @@ configurations {
 }
 
 repositories {
-//	url "https://maven-central.storage-download.googleapis.com/repos/central/data/"
 	mavenCentral()
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
+	
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	//with non-Android
 	implementation 'io.grpc:grpc-netty:1.22.1'
 	implementation "com.google.protobuf:protobuf-java-util:3.7.1"
@@ -85,3 +88,5 @@ sourceSets {
 		}
 	}
 }
+
+test.enabled = false
